@@ -4,7 +4,9 @@ pipeline {
     stages{
         stage('Build') {
             steps {
+		sh 'rm -rf *'
                 sh 'git clone https://github.com/MicrosoftDocs/pipelines-dotnet-core.git'
+		sh ' cp /home/ubuntu/pipelines-dotnet-core-master/dockerfile /home/ubuntu/.jenkins/workspace/Dotnetpipeline/
                 sh 'sudo docker build -t aspnetapp .'
             }
         }
