@@ -6,7 +6,7 @@ pipeline {
             steps {
 		sh 'rm -rf *'
                 sh 'git clone https://github.com/gitofakash/Dotnet.git'
-		dir(Dotnet){
+		dir('Dotnet'){
 		sh 'sudo cp /home/ubuntu/.jenkins/workspace/Dotnetpipeline/Dotnet/* /home/ubuntu/.jenkins/workspace/Dotnetpipeline/'
                 sh 'sudo docker build -t aspnetapp .'
 		}
