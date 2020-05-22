@@ -17,7 +17,7 @@ pipeline {
         }
 	  stage('Deploy') {
 	  when {
-                expression { params.BUILD_FULL == 'false' }
+                expression { ${BUILD_FULL} == 'true' }
             }
 	    steps {
 		dir('Dotnet'){
