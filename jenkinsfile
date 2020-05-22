@@ -8,8 +8,10 @@ pipeline {
                 sh 'git clone https://github.com/gitofakash/Dotnet.git'
 		dir('Dotnet'){
                 sh 'sudo docker build -t aspnetapp .'
-		def BUILD_FULL = sh ( script: "docker container ls -a| grep 'myapp'", returnStatus: true) == 0
+		script{
+		BUILD_FULL = sh ( script: "docker container ls -a| grep 'myapp'", returnStatus: true) == 0
                 echo "Build full flag: ${BUILD_FULL}"
+		}
 		}
             }
         }
