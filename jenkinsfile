@@ -19,13 +19,17 @@ pipeline {
 	    steps {
 	    	dir('Dotnet'){
 		script{
-	    	when("${BUILD_FULL}" == 'true')
+	    	if("${BUILD_FULL}" == 'true')
 		{
                 sh 'sudo docker stop myapp'
 		sh 'sudo docker rm myapp'
 		echo "${BUILD_FULL}"
+		sh 'sudo docker run -d -p 8081:80 --name myapp aspnetapp'
 		}
+		else
+		{
                 sh 'sudo docker run -d -p 8081:80 --name myapp aspnetapp'
+		}
 		}
    		}
 	}
