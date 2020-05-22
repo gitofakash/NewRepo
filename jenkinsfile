@@ -16,13 +16,14 @@ pipeline {
             }
         }
 	  stage('Deploy') {
-	  when {
-                expression { ${BUILD_FULL} == 'true' }
-            }
+	 /* when {
+                expression { Param.BUILD_FULL == 'true' }
+            }*/
 	    steps {
 		dir('Dotnet'){
-                sh 'sudo docker stop myapp'
-		sh 'sudo docker rm myapp'
+               // sh 'sudo docker stop myapp'
+		//sh 'sudo docker rm myapp'
+		echo "${BUILD_FULL}"
 		}
 		}
           //  steps {
