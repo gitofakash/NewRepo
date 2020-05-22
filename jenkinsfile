@@ -9,13 +9,21 @@ pipeline {
 		dir('Dotnet'){
                 sh 'sudo docker build -t aspnetapp .'
 		script{
-		BUILD_FULL = sh ( script: "sudo docker container ls -a| grep '1myapp'", returnStatus: true) == 0
+		BUILD_FULL = sh ( script: "sudo docker container ls -a| grep 'myapp'", returnStatus: true) == 0
                 echo "Build full flag: ${BUILD_FULL}"
 		}
 		}
             }
         }
 	  stage('Deploy') {
+	  when {
+                expression { params.BUILD_FULL == 'true' }
+            }
+	    	steps {
+		dir('Dotnet'){
+                sh 'sudo docker stop myapp'
+		sh 'sudo docker rm myapp'
+		}
             steps {
                 dir('Dotnet'){
                 sh 'sudo docker run -d -p 8081:80 --name myapp aspnetapp'
