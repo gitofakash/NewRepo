@@ -18,11 +18,12 @@ pipeline {
 	  stage('Deploy') {
 	  when {
                 expression { params.BUILD_FULL == 'true' }
-            }
+            
 	    steps {
 		dir('Dotnet'){
                 sh 'sudo docker stop myapp'
 		sh 'sudo docker rm myapp'
+		}
 		}
 		}
             steps {
