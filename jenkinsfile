@@ -19,7 +19,7 @@ pipeline {
 	    steps {
 	    	dir('Dotnet'){
 		script{
-	    	if (BUILD_FULL == 'true')
+	    	if (${BUILD_FULL} == 'true')
 		{
                 sh 'sudo docker stop myapp'
 		sh 'sudo docker rm myapp'
