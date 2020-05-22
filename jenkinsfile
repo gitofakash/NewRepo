@@ -24,11 +24,12 @@ pipeline {
 		sh 'sudo docker rm myapp'
 		echo "${BUILD_FULL}"
 		}
+		}
 		else
 		{
                 sh 'sudo docker run -d -p 8081:80 --name myapp aspnetapp'
 		}
-   	}
+   	
 	}
     }
 }
