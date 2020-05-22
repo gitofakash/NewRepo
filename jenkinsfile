@@ -19,7 +19,7 @@ pipeline {
 	  when {
                 expression { params.BUILD_FULL == 'true' }
             }
-	    	steps {
+	    steps {
 		dir('Dotnet'){
                 sh 'sudo docker stop myapp'
 		sh 'sudo docker rm myapp'
@@ -30,6 +30,6 @@ pipeline {
                 sh 'sudo docker run -d -p 8081:80 --name myapp aspnetapp'
             }
         }
-	
+	}
     }
 }
