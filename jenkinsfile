@@ -9,7 +9,7 @@ pipeline {
 		dir('Dotnet'){
                 sh 'sudo docker build -t aspnetapp .'
 		script{
-		BUILD_FULL = sh ( script: "sudo docker container ls -a| grep 'myapp'", returnStatus: true) == 0
+		BUILD_FULL = sh ( script: "sudo docker container ls -a| grep '1myapp'", returnStatus: true) == 0
                 echo "Build full flag: ${BUILD_FULL}"
 		}
 		}
