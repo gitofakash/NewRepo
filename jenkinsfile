@@ -17,9 +17,9 @@ pipeline {
         }
 	  stage('Deploy') {
 	    steps {
-		dir('Dotnet'){
-		if (BUILD_FULL == 'true')
+	    	if (BUILD_FULL == 'true')
 		{
+		dir('Dotnet'){
                 sh 'sudo docker stop myapp'
 		sh 'sudo docker rm myapp'
 		echo "${BUILD_FULL}"
