@@ -16,21 +16,18 @@ pipeline {
             }
         }
 	  stage('Deploy') {
-	 /* when {
-                expression { Param.BUILD_FULL == 'true' }
-            }*/
 	    steps {
 		dir('Dotnet'){
-               // sh 'sudo docker stop myapp'
-		//sh 'sudo docker rm myapp'
+		if (BUILD_FULL == 'true')
+		{
+                sh 'sudo docker stop myapp'
+		sh 'sudo docker rm myapp'
 		echo "${BUILD_FULL}"
 		}
+		else{
+                sh 'sudo docker run -d -p 8081:80 --name myapp aspnetapp'
 		}
-          //  steps {
-         //       dir('Dotnet'){
-         //       sh 'sudo docker run -d -p 8081:80 --name myapp aspnetapp'
-        //    }
-        //}
+   	}
 	}
     }
 }
